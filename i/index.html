@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Join me on Skeeto</title>
+<style>
+  /* Skeeto's paper, ink and one highlighter (src/ui/theme.ts). The
+     highlighter is a background under ink, never a text colour. It stays
+     yellow in dark mode, so the ink on it has its own token that never
+     flips: --ink turns near-white in the dark, and near-white on yellow is
+     unreadable. */
+  :root { color-scheme: light dark; --paper:#F4EFE6; --card:#FFFDF8; --ink:#14130F; --ink2:#35322B;
+          --muted:#625E55; --stroke:#D8D1C4; --hl:#FFC83D; --on-hl:#14130F; }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#14130F; --card:#1E1C17; --ink:#F4EFE6; --ink2:#D8D1C4; --muted:#A9A398; --stroke:#3A372F; }
+  }
+  * { box-sizing: border-box; }
+  /* The buttons are display:block, which would otherwise beat `hidden`. */
+  [hidden] { display:none !important; }
+  body { margin:0; background:var(--paper); color:var(--ink); min-height:100dvh;
+         display:flex; align-items:center; justify-content:center; padding:1.5rem 16px;
+         font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 26rem; width:100%; }
+  .label { font:600 11px/1.3 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.12em; color:var(--muted); }
+  h1 { font-size:1.9rem; line-height:1.15; margin:.5rem 0 .6rem; letter-spacing:-.02em; }
+  .who { background:var(--hl); color:var(--on-hl); padding:0 .25em; border-radius:4px;
+         font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size:.85em; }
+  p.lede { color:var(--ink2); margin:0 0 1.6rem; }
+  a.btn { display:block; text-align:center; padding:.9rem 1rem; border-radius:999px; text-decoration:none;
+          font-weight:600; margin-bottom:.7rem; }
+  a.primary { background:var(--ink); color:var(--paper); }
+  a.secondary { border:1.5px solid var(--ink); color:var(--ink); }
+  ul { color:var(--ink2); font-size:.95rem; padding:1rem 1rem 1rem 2rem; margin:1.6rem 0 0;
+       background:var(--card); border:1px solid var(--stroke); border-radius:22px; }
+  li { margin:.3rem 0; }
+  .note { font-size:.85rem; color:var(--muted); margin-top:1.2rem; }
+  footer { margin-top:2rem; font-size:.8rem; color:var(--muted); }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">SKEETO · U OF T</div>
+  <h1><span class="who" id="who">A friend</span> wants to add you</h1>
+  <p class="lede">Skeeto shows when you and your friends are both free between classes, and lets you message them.</p>
+
+  <a class="btn primary" id="open" href="skeeto://add-friend">Open in Skeeto</a>
+  <!-- Shown only once APP_STORE_URL (below) is set: a button to the App
+       Store's front page would send someone looking for Skeeto nowhere. -->
+  <a class="btn secondary" id="store" href="#" hidden>Get Skeeto on the App Store</a>
+  <p class="note" id="nostore">Don't have Skeeto yet? Look for Skeeto on the App Store on your iPhone, then open this link again.</p>
+
+  <ul>
+    <li>Your timetable comes from ACORN in one sign-in, nothing to type.</li>
+    <li>New friends see <strong>busy times only</strong>: when you're free, with no course names or rooms.</li>
+    <li>You choose what each person sees, and can stop sharing any time.</li>
+  </ul>
+
+  <p class="note">Opening this link doesn't add anyone. Skeeto shows you who it is and asks first. Friends are kept to one campus, so you can add each other only if you're both at the same one.</p>
+
+  <footer>
+    Skeeto is an independent app and is not affiliated with the University of Toronto.
+    <br><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+  </footer>
+</main>
+
+<script>
+// Skeeto's own App Store listing: https://apps.apple.com/app/id<Apple ID>,
+// with the Apple ID from App Store Connect > App Information. Empty until it
+// is filled in, and while it is empty the page says to look for Skeeto
+// rather than linking to the store's front page.
+var APP_STORE_URL = '';
+
+// The handle is the `u` query parameter: /oakhall/i/?u=<handle>, which is
+// what the app shares (src/model/friends.ts, inviteLink). A path form,
+// /oakhall/i/<handle>, would 404 on GitHub Pages, but the last path segment
+// is still read for any link of that shape already out in the world.
+(function () {
+  var handle = '';
+  try { handle = new URLSearchParams(location.search).get('u') || ''; } catch (e) { handle = ''; }
+  if (!handle) {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var last = parts[parts.length - 1] || '';
+    if (last !== 'i' && last !== 'index.html') handle = last;
+  }
+  handle = handle.trim().toLowerCase();
+  // The app's own username rule (UsernameRules in src/model/friends.ts: 3 to
+  // 20 of a-z, 0-9 and _, not starting with a digit). A link is untrusted
+  // input and this text goes on screen, so anything that is not a plain
+  // handle is not shown at all.
+  if (!/^[a-z_][a-z0-9_]{2,19}$/.test(handle)) handle = '';
+
+  if (handle) {
+    document.getElementById('who').textContent = '@' + handle;
+    document.title = '@' + handle + ' wants to add you on Skeeto';
+  }
+  // textContent, never innerHTML, and the app link is built from the
+  // validated handle rather than from the raw URL. The app's route is
+  // /add-friend?u=<handle> (src/app/add-friend.tsx).
+  document.getElementById('open').href = handle
+    ? 'skeeto://add-friend?u=' + encodeURIComponent(handle)
+    : 'skeeto://add-friend';
+
+  // Only a listing link turns the button on, never a typo'd or blank one.
+  if (/^https:\/\/apps\.apple\.com\/(?:[^?#]+\/)?id\d+/.test(APP_STORE_URL)) {
+    var store = document.getElementById('store');
+    store.href = APP_STORE_URL;
+    store.hidden = false;
+    document.getElementById('nostore').hidden = true;
+  }
+})();
+</script>
+</body>
+</html>

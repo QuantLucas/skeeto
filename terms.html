@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skeeto, Terms of Use</title>
+<!-- Section 3 ("The Feed rules") mirrors UGC_TERMS in skeeto/src/model/terms.ts,
+     version ugc-2026-10-02, word for word. The app's copy is the one students
+     accept; change both together, and change UGC_TERMS_VERSION when the meaning
+     changes. The numbers (7 days, third strike, age 13) are STRIKE_MUTE_DAYS,
+     STRIKES_TO_BAN and MINIMUM_AGE there, and what the server enforces
+     (private.recompute_moderation in supabase/schema.sql). The rest of this page
+     adds to those rules and must never contradict them. -->
+<style>
+  :root { color-scheme: light dark; --ink:#1a1a1a; --dim:#5a5a5a; --line:#e2e2e2; --bg:#fff; --accent:#00204e; --warn:#8a4b00; --warnbg:#fff8ed; }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e8e8e8; --dim:#a0a0a0; --line:#333; --bg:#161616; --accent:#9db9e8; --warn:#e8b878; --warnbg:#2a2113; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+         font:16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  h1 { font-size: 1.9rem; line-height:1.2; margin:0 0 .25rem; letter-spacing:-.02em; }
+  h2 { font-size: 1.15rem; margin: 2.4rem 0 .6rem; letter-spacing:-.01em; }
+  h3 { font-size: 1rem; margin: 1.6rem 0 .4rem; }
+  .updated { color: var(--dim); font-size:.9rem; margin: 0 0 2rem; }
+  .lede { font-size:1.05rem; border-left:3px solid var(--accent); padding-left:1rem; margin:0 0 1rem; }
+  code { font:.88em ui-monospace, SFMono-Regular, Menlo, monospace;
+         background:color-mix(in srgb, var(--ink) 8%, transparent); padding:.1em .35em; border-radius:4px; }
+  .note { background:var(--warnbg); border:1px solid color-mix(in srgb, var(--warn) 35%, transparent);
+          border-radius:8px; padding:.9rem 1.1rem; margin:1rem 0; }
+  .note strong { color: var(--warn); }
+  .rules { border:1px solid var(--line); border-radius:8px; padding:.4rem 1.1rem 1rem; margin:1rem 0; }
+  ul { padding-left: 1.2rem; }
+  li { margin:.3rem 0; }
+  footer { margin-top:3rem; padding-top:1.2rem; border-top:1px solid var(--line); color:var(--dim); font-size:.88rem; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Skeeto, Terms of Use</h1>
+<p class="updated">Last updated 2 October 2026 &middot; Feed rules version <code>ugc-2026-10-02</code></p>
+
+<p class="lede">Skeeto is for students, and it has <strong>no tolerance for objectionable content
+or abusive users.</strong> These terms are the agreement between you and Skeeto, operated by
+Lucas Nadon, for using the app.</p>
+
+<p>How your information is handled is in the <a href="privacy.html">privacy policy</a>. Help is on
+the <a href="support.html">support page</a>.</p>
+
+<h2 id="agreement">1. Agreeing to these terms</h2>
+<p>By using Skeeto, you agree to these terms. Before your first post, comment, repost,
+community or message, the app also shows you the Feed rules in section 3 and asks you to accept them. You
+can't post or message until you do. If you don't agree, don't use the Feed, or don't use Skeeto.</p>
+
+<h2 id="who">2. Who can use Skeeto</h2>
+<ul>
+  <li><strong>You must be at least 13 to create a Skeeto account.</strong> If you live in Quebec
+      and are under 14, you need a parent's or guardian's consent. If you're under the age of
+      majority where you live, a parent or guardian should read these terms with you.</li>
+  <li>One account per person. Don't use another person's account, and don't pretend to be someone
+      else.</li>
+  <li>Keep access to your account to yourself. You're responsible for what happens on it.</li>
+  <li>If you've been banned from Skeeto, don't create another account.</li>
+</ul>
+
+<h2 id="rules">3. The Feed rules</h2>
+<p>These are the rules you accept in the app before you post or message, exactly as the app shows them.</p>
+
+<div class="rules">
+<h3>Before you post or message</h3>
+<p><strong>Skeeto is for students, and it has no tolerance for objectionable content or
+abusive users.</strong></p>
+
+<h3>Not allowed</h3>
+<ul>
+  <li>Nudity or sexual content of any kind.</li>
+  <li>Harassment, bullying, threats, hate, or content that encourages violence or self-harm.</li>
+  <li>Sharing someone's private information or photos without their permission, or pretending to be someone else.</li>
+  <li>Spam, scams, and anything illegal.</li>
+  <li>These rules cover everything you put on Skeeto: posts, comments, images, your profile, communities, messages and group chats.</li>
+</ul>
+
+<h3>What happens</h3>
+<ul>
+  <li>Anything that breaks these rules is removed, and so are accounts that abuse other people.</li>
+  <li>Every image is checked automatically. One the first check is unsure about stays visible only to you until a second check decides.</li>
+  <li>An image confirmed as explicit is a strike: it is removed and the Feed is closed to you for 7 days.</li>
+  <li>Third strike and you can never post or comment again.</li>
+</ul>
+
+<h3>Reporting and blocking</h3>
+<ul>
+  <li>Report any post, comment, profile or community, or someone in a chat, and it goes straight to Skeeto. Enough reports hide a post, comment or community until it is reviewed.</li>
+  <li>Block someone and they disappear for you everywhere, messages included, and you for them.</li>
+</ul>
+
+<h3>Your courses and program</h3>
+<ul>
+  <li>Your courses, program and year from ACORN tune your Feed and put you in your course communities, which you can leave. Your program and year appear on your profile.</li>
+</ul>
+
+<h3>Who can join</h3>
+<ul>
+  <li>You must be at least 13. You are responsible for what you post and send.</li>
+  <li>Questions, appeals, or something we missed: <a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>.</li>
+</ul>
+</div>
+
+<p>The rules apply to everything you put on Skeeto: posts, comments, images, links, stickers,
+messages and group chats (including a group's name), your profile (username, display name, bio, social handles and photo), and the
+communities you create.</p>
+
+<h2 id="enforcement">4. How the rules are enforced</h2>
+<ul>
+  <li><strong>Automatic checks.</strong> Words that are never allowed are refused when you post.
+      Text and images are checked automatically, and content that clearly breaks the rules is
+      removed. A profile whose text breaks the rules is reset to a neutral username, with its bio,
+      program and handles cleared. The <a href="privacy.html#moderation">privacy policy</a>
+      explains how the checks work.</li>
+  <li><strong>Strikes.</strong> An image confirmed as explicit by the second image check is a
+      strike. A strike removes the image and closes the Feed to you for 7 days. That includes the
+      Feed itself, communities, posts and search. With a third strike, you can never post or
+      comment again.</li>
+  <li><strong>Removal and bans.</strong> Anything that breaks the rules is removed, whether it's
+      found automatically, through reports, or by the developer. Accounts that abuse other people
+      are banned from posting, and they may be removed from Skeeto entirely.</li>
+  <li><strong>Strikes and bans follow the person, not the account.</strong> If you delete your
+      account and sign up again with the same email address, or the same Apple or Google account,
+      your strikes and any ban come back.</li>
+  <li><strong>Community creators</strong> can remove posts, comments and members in the
+      communities they create. They must follow these rules too.</li>
+  <li><strong>Appeals.</strong> If you think a removal or strike was wrong, including one made
+      automatically, email
+      <a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>. A person will look at
+      it. Strikes made in error are reversed, and wrongly removed content is restored.</li>
+</ul>
+
+<h2 id="reporting">5. Reporting and blocking</h2>
+<ul>
+  <li><strong>Report</strong> any post, comment, profile or community from its menu. In a chat,
+      report the person from the top of the conversation. The person you report isn't told who
+      reported them.</li>
+  <li>Every report is sent to the developer. If three different people report the same post,
+      comment or student-created community, it's hidden at once until it's reviewed. Skeeto aims to
+      review reports within 24 hours. Objectionable content is removed, and so are accounts that
+      abuse other people.</li>
+  <li><strong>Block</strong> someone, and they disappear for you everywhere, and you for them: the
+      Feed, comments, reposts, search, profiles and messages. Blocking also ends any connection or
+      follow between you.</li>
+  <li>If someone is in danger, don't wait for a report. Call 911.</li>
+</ul>
+
+<h2 id="content">6. Your content</h2>
+<ul>
+  <li><strong>You own what you post.</strong> You're responsible for it, and you must have the
+      right to share it, including any photo of another person.</li>
+  <li>To run Skeeto, you give Skeeto a non-exclusive, royalty-free licence to store, copy, resize,
+      display and send your content to the people you shared it with. This includes analysing it
+      for moderation, search and recommendations: checking it automatically, turning it into the
+      numerical profiles the Feed ranks with, and using it to improve the recommendation model.
+      The licence lasts only as long as needed to run Skeeto. It ends when you delete the content
+      or your account, except for the copies the
+      <a href="privacy.html#retention">privacy policy</a> says are kept for moderation and
+      safety.</li>
+  <li>Messages are only between you and the people in the conversation (one person, or the members
+      of a group chat), but they aren't end-to-end encrypted. Anyone in a conversation can report a
+      message to us, and a reported message is shared with the developer so it can be reviewed.</li>
+</ul>
+
+<h2 id="fair">7. Using Skeeto fairly</h2>
+<p>Don't:</p>
+<ul>
+  <li>try to get around a mute, strike or ban, including by making a new account;</li>
+  <li>use bots, scripts or automated accounts, or collect other students' information from Skeeto
+      (scraping);</li>
+  <li>try to read or change data you aren't allowed to, or test, overload or attack Skeeto's
+      servers;</li>
+  <li>use Skeeto to advertise, sell, or recruit people for commercial purposes without
+      permission;</li>
+  <li>use Skeeto in a way that breaks the law, or U of T's rules for ACORN and Quercus.</li>
+</ul>
+
+<h2 id="uoft">8. Skeeto and the University of Toronto</h2>
+<ul>
+  <li><strong>Skeeto is independent.</strong> It isn't affiliated with, endorsed by, or operated by
+      the University of Toronto. ACORN, Quercus and UTORid are U of T services.</li>
+  <li>When you sign in to U of T in Skeeto, you sign in on U of T's own page with your own UTORid.
+      Skeeto reads your own timetable and coursework with your permission. You're responsible for
+      using your UTORid in line with U of T's rules.</li>
+  <li><strong>Information in Skeeto can be wrong or out of date.</strong> This includes timetables
+      read from ACORN, assignments and grades from Quercus, campus maps, food outlet hours, walking
+      times and community content. Check the official source before you rely on it, especially for
+      exams, deadlines and enrolment.</li>
+  <li>Skeeto isn't an emergency service.</li>
+</ul>
+
+<h2 id="privacy">9. Privacy</h2>
+<p>The <a href="privacy.html">privacy policy</a> explains what Skeeto collects, how it's used,
+where it's stored, and your rights. In particular, if you have an account, your courses, program
+and year personalise your Feed and appear on your profile.</p>
+
+<h2 id="ending">10. Ending your account</h2>
+<ul>
+  <li>You can delete your account at any time in the app, at <strong>Account &rarr; Delete
+      account</strong>, or by email. The <a href="privacy.html#deletion">privacy policy</a> lists
+      what is deleted and what is kept.</li>
+  <li>Skeeto may suspend or remove an account that breaks these terms. It may also change or stop
+      any feature, or Skeeto itself. If Skeeto shuts down, we'll try to give notice in the app
+      first.</li>
+</ul>
+
+<h2 id="liability">11. Disclaimers and liability</h2>
+<p>Skeeto is a free app made by one developer. It's provided "as is" and "as available", without
+warranties of any kind, as far as the law allows. To the extent the law allows, the developer
+isn't liable for indirect or consequential losses, for content other users post, or for decisions
+you make based on information shown in Skeeto. Nothing in these terms limits rights you have that
+can't be limited by law, including your rights as a consumer where you live.</p>
+
+<h2 id="apple">12. If you got Skeeto from the App Store</h2>
+<ul>
+  <li>These terms are between you and Skeeto (operated by Lucas Nadon), not Apple. Skeeto, not
+      Apple, is responsible for the app and its content.</li>
+  <li>You may use Skeeto on Apple-branded devices you own or control, as the App Store's Usage
+      Rules allow.</li>
+  <li>Apple has no obligation to provide maintenance or support for Skeeto.</li>
+  <li>If Skeeto fails to meet a warranty that applies by law, you may tell Apple, and Apple will
+      refund the price you paid, if any. Apple has no other warranty obligation for Skeeto.</li>
+  <li>Skeeto, not Apple, is responsible for handling claims about the app. This includes product
+      liability claims, claims that it fails to meet a legal or regulatory requirement, consumer
+      protection or privacy claims, and claims that it infringes someone else's intellectual
+      property.</li>
+  <li>You confirm that you're not in a country subject to a Canadian or U.S. government embargo,
+      and not on a Canadian or U.S. government list of prohibited or restricted parties.</li>
+  <li>You must also follow the terms of any other service you use with Skeeto, such as your
+      wireless plan.</li>
+  <li>Apple and its subsidiaries are third-party beneficiaries of these terms, and may enforce
+      them against you.</li>
+</ul>
+
+<h2 id="changes">13. Changes</h2>
+<p>When these terms change, the date at the top changes. If the Feed rules in section 3 change in
+meaning, their version changes too, and the app asks you to accept them again before you post. If
+you keep using Skeeto after a change, you accept the new terms.</p>
+
+<h2 id="law">14. Governing law</h2>
+<p>These terms are governed by the laws of Ontario and the federal laws of Canada that apply
+there. This doesn't take away any protection you have under the consumer laws of the province
+where you live.</p>
+
+<h2 id="contact">15. Contact</h2>
+<p>Questions, appeals, or something we missed:
+<a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>.</p>
+
+<footer>
+  <p><strong>Contact:</strong> <a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>
+     &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="support.html">Support</a></p>
+  <p>Skeeto is an independent project, operated by Lucas Nadon, and is not affiliated with the
+     University of Toronto.</p>
+</footer>
+
+</main>
+</body>
+</html>
