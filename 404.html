@@ -17,10 +17,39 @@
 </style>
 </head>
 <body>
+<script>
+// An invite link, /skeeto/i/<code> (src/model/friends.ts, inviteLink), has
+// no page of its own on GitHub Pages: with Skeeto installed it opens the app
+// as a universal link, and for everyone else it lands here. Sent on to the
+// invite page, which reads the code from ?c=. Only the code's own alphabet
+// is passed along.
+(function () {
+  var match = /^\/skeeto\/i\/([A-Za-z0-9]{20})\/?$/.exec(location.pathname);
+  if (match) location.replace('/skeeto/i/?c=' + match[1].toLowerCase());
+})();
+</script>
 <main>
   <h1>Nothing here</h1>
   <p>This page doesn't exist. If a friend sent you a link, ask them to share it again from Skeeto.</p>
   <p><a href="/skeeto/support.html">Skeeto support</a> · <a href="/skeeto/privacy.html">Privacy</a> · <a href="/skeeto/terms.html">Terms</a></p>
 </main>
+<script>
+// A residence's join link, /skeeto/c/<code> (SKEETO_CHANGES 6.6): Pages has
+// no such page, so it goes on to the one that reads the code from ?k=.
+(function () {
+  var m = /^\/skeeto\/c\/([A-Za-z0-9]{8})\/?$/.exec(location.pathname);
+  if (m) location.replace('/skeeto/c/?k=' + m[1].toLowerCase());
+})();
+</script>
+<script>
+// A shared tile's link, /skeeto/p/<code> (SKEETO_CHANGES 6.7, postLink in
+// skeeto/src/model/shareCard.ts): the post's id in 22 base64url letters, or
+// a whole uuid. Sent on to the page that reads it from ?k=. The code is
+// case-sensitive, so it is passed along as it came.
+(function () {
+  var m = /^\/skeeto\/p\/([A-Za-z0-9_-]{22}|[0-9a-fA-F-]{36})\/?$/.exec(location.pathname);
+  if (m) location.replace('/skeeto/p/?k=' + m[1]);
+})();
+</script>
 </body>
 </html>

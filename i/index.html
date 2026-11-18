@@ -46,70 +46,91 @@
   <h1><span class="who" id="who">A friend</span> wants to add you</h1>
   <p class="lede">Skeeto shows when you and your friends are both free between classes, and lets you message them.</p>
 
-  <a class="btn primary" id="open" href="skeeto://add-friend">Open in Skeeto</a>
-  <!-- Shown only once APP_STORE_URL (below) is set: a button to the App
-       Store's front page would send someone looking for Skeeto nowhere. -->
-  <a class="btn secondary" id="store" href="#" hidden>Get Skeeto on the App Store</a>
-  <p class="note" id="nostore">Don't have Skeeto yet? Look for Skeeto on the App Store on your iPhone, then open this link again.</p>
+  <a class="btn primary" id="store" href="https://apps.apple.com/app/id6814927332">Get Skeeto on the App Store</a>
+  <p class="note" id="paste">This button also copies your invite. After installing, open Skeeto and tap Paste on the “Add your friends” screen, or in Friends.</p>
+  <a class="btn secondary" id="open" href="skeeto://">Already have Skeeto? Open it</a>
+  <p class="note" id="update" hidden>Nothing happens, or Skeeto says the page isn’t there? Update Skeeto from the App Store and open this link again. Or find them in Friends › Add by the @handle in their message.</p>
 
   <ul>
     <li>Your timetable comes from ACORN in one sign-in, nothing to type.</li>
     <li>New friends see <strong>busy times only</strong>: when you're free, with no course names or rooms.</li>
-    <li>You choose what each person sees, and can stop sharing any time.</li>
+    <li id="where">You choose what each person sees, and can stop sharing any time.</li>
   </ul>
 
-  <p class="note">Opening this link doesn't add anyone. Skeeto shows you who it is and asks first. Friends are kept to one campus, so you can add each other only if you're both at the same one.</p>
+  <p class="note" id="rule">Opening this link adds no one by itself. Skeeto shows you who sent it, and you become friends only when you tap Add. Friends are kept to one campus, so it works only if you're both at the same one.</p>
 
   <footer>
     Skeeto is an independent app and is not affiliated with the University of Toronto.
-    <br><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+    <br><a href="/skeeto/privacy.html">Privacy</a> · <a href="/skeeto/terms.html">Terms</a>
   </footer>
 </main>
 
 <script>
-// Skeeto's own App Store listing: https://apps.apple.com/app/id<Apple ID>,
-// with the Apple ID from App Store Connect > App Information. Empty until it
-// is filled in, and while it is empty the page says to look for Skeeto
-// rather than linking to the store's front page.
-var APP_STORE_URL = '';
+// Skeeto's App Store listing (skeeto/eas.json, ascAppId).
+var APP_STORE_URL = 'https://apps.apple.com/app/id6814927332';
+var INVITE_PAGE = 'https://quantlucas.github.io/skeeto/i/';
 
-// The handle is the `u` query parameter: /oakhall/i/?u=<handle>, which is
-// what the app shares (src/model/friends.ts, inviteLink). A path form,
-// /oakhall/i/<handle>, would 404 on GitHub Pages, but the last path segment
-// is still read for any link of that shape already out in the world.
+// Two kinds of link land here.
+//
+//   /skeeto/i/<code>   what the app shares now (src/model/friends.ts,
+//                      inviteLink). With Skeeto installed it is a universal
+//                      link and opens the app; this page is for everyone
+//                      else. GitHub Pages has no page at that path, so
+//                      404.html sends it on here as /skeeto/i/?c=<code>.
+//   /skeeto/i/?u=<handle>  links shared before invite codes. The app still
+//                      opens them at /add-friend?u=<handle>, which proposes
+//                      and asks first.
 (function () {
-  var handle = '';
-  try { handle = new URLSearchParams(location.search).get('u') || ''; } catch (e) { handle = ''; }
-  if (!handle) {
-    var parts = location.pathname.split('/').filter(Boolean);
-    var last = parts[parts.length - 1] || '';
-    if (last !== 'i' && last !== 'index.html') handle = last;
-  }
-  handle = handle.trim().toLowerCase();
-  // The app's own username rule (UsernameRules in src/model/friends.ts: 3 to
-  // 20 of a-z, 0-9 and _, not starting with a digit). A link is untrusted
-  // input and this text goes on screen, so anything that is not a plain
-  // handle is not shown at all.
-  if (!/^[a-z_][a-z0-9_]{2,19}$/.test(handle)) handle = '';
+  var params;
+  try { params = new URLSearchParams(location.search); } catch (e) { params = null; }
+  var code = ((params && params.get('c')) || '').trim().toLowerCase();
+  // The server's alphabet (pending/26_invites.sql): 20 letters, no l, o, 0
+  // or 1. A link is untrusted input, so anything else is not a code.
+  if (!/^[a-km-np-z2-9]{20}$/.test(code)) code = '';
 
-  if (handle) {
+  var handle = '';
+  if (!code) {
+    handle = ((params && params.get('u')) || '').trim().toLowerCase();
+    // The app's own username rule (UsernameRules in src/model/friends.ts).
+    if (!/^[a-z_][a-z0-9_]{2,19}$/.test(handle)) handle = '';
+  }
+
+  var open = document.getElementById('open');
+  if (code) {
+    // The scheme form the app also reads, for a page opened in Safari.
+    open.href = 'skeeto://invite/' + code;
+    // Builds before invite codes (15 and older) have no screen for this
+    // link, and no update arrives over the air. The share message still
+    // carries the inviter's @handle.
+    document.getElementById('update').hidden = false;
+    // Only a friend made from a code starts with location off for both; a
+    // request friendship follows the app's default (privacy.html).
+    document.getElementById('where').textContent = "A friend you add from this link doesn't see where you are unless you switch it on for them.";
+  } else if (handle) {
+    // textContent, never innerHTML, and the link built from the validated
+    // handle rather than from the raw URL.
     document.getElementById('who').textContent = '@' + handle;
     document.title = '@' + handle + ' wants to add you on Skeeto';
+    open.href = 'skeeto://add-friend?u=' + encodeURIComponent(handle);
+    // A handle link asks first, on both sides.
+    document.getElementById('rule').textContent = "Opening this link doesn't add anyone. Skeeto shows you who it is and asks first. Friends are kept to one campus, so you can add each other only if you're both at the same one.";
+    document.getElementById('paste').hidden = true;
+  } else {
+    document.getElementById('paste').hidden = true;
   }
-  // textContent, never innerHTML, and the app link is built from the
-  // validated handle rather than from the raw URL. The app's route is
-  // /add-friend?u=<handle> (src/app/add-friend.tsx).
-  document.getElementById('open').href = handle
-    ? 'skeeto://add-friend?u=' + encodeURIComponent(handle)
-    : 'skeeto://add-friend';
 
-  // Only a listing link turns the button on, never a typo'd or blank one.
-  if (/^https:\/\/apps\.apple\.com\/(?:[^?#]+\/)?id\d+/.test(APP_STORE_URL)) {
-    var store = document.getElementById('store');
-    store.href = APP_STORE_URL;
-    store.hidden = false;
-    document.getElementById('nostore').hidden = true;
-  }
+  // The App Store tap copies the invite first, so the Paste button in
+  // Skeeto has it after installing. A tap is the one moment a page may write
+  // the clipboard; whether or not the copy works, the store opens.
+  document.getElementById('store').addEventListener('click', function (event) {
+    if (!code || !navigator.clipboard || !navigator.clipboard.writeText) return;
+    event.preventDefault();
+    var go = function () { location.href = APP_STORE_URL; };
+    var timer = setTimeout(go, 800);
+    navigator.clipboard.writeText(INVITE_PAGE + code)
+      .catch(function () {})
+      .then(function () { clearTimeout(timer); go(); });
+  });
 })();
 </script>
 </body>

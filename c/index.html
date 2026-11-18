@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Join on Skeeto</title>
+<style>
+  /* Skeeto's paper, ink and one highlighter, as docs/i/index.html. */
+  :root { color-scheme: light dark; --paper:#F4EFE6; --card:#FFFDF8; --ink:#14130F; --ink2:#35322B;
+          --muted:#625E55; --stroke:#D8D1C4; --hl:#FFC83D; --on-hl:#14130F; }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#14130F; --card:#1E1C17; --ink:#F4EFE6; --ink2:#D8D1C4; --muted:#A9A398; --stroke:#3A372F; }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display:none !important; }
+  body { margin:0; background:var(--paper); color:var(--ink); min-height:100dvh;
+         display:flex; align-items:center; justify-content:center; padding:1.5rem 16px;
+         font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 26rem; width:100%; }
+  .label { font:600 11px/1.3 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.12em; color:var(--muted); }
+  h1 { font-size:1.9rem; line-height:1.15; margin:.5rem 0 .6rem; letter-spacing:-.02em; }
+  p.lede { color:var(--ink2); margin:0 0 1.6rem; }
+  a.btn { display:block; text-align:center; padding:.9rem 1rem; border-radius:999px; text-decoration:none;
+          font-weight:600; margin-bottom:.7rem; }
+  a.primary { background:var(--ink); color:var(--paper); }
+  a.secondary { border:1.5px solid var(--ink); color:var(--ink); }
+  ul { color:var(--ink2); font-size:.95rem; padding:1rem 1rem 1rem 2rem; margin:1.6rem 0 0;
+       background:var(--card); border:1px solid var(--stroke); border-radius:22px; }
+  li { margin:.3rem 0; }
+  .note { font-size:.85rem; color:var(--muted); margin-top:1.2rem; }
+  footer { margin-top:2rem; font-size:.8rem; color:var(--muted); }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">SKEETO · SPOTTED</div>
+  <h1>You're invited to your residence's Spotted</h1>
+  <p class="lede">Posts from the people you live with, anonymous by default, out together at 10pm.</p>
+
+  <a class="btn primary" id="open" href="skeeto://feed">Open in Skeeto</a>
+  <!-- Shown only once APP_STORE_URL (below) is set, as on docs/i/. -->
+  <a class="btn secondary" id="store" href="#" hidden>Get Skeeto on the App Store</a>
+  <p class="note" id="nostore">Don't have Skeeto yet? Look for Skeeto on the App Store on your iPhone, then open this link again.</p>
+  <p class="note" id="bad" hidden>This link is missing its code. Ask whoever shared it for the whole link.</p>
+
+  <ul>
+    <li>Only people with this link can join, and only they see what is posted there.</li>
+    <li>Anonymous posts show no name, handle or photo. Skeeto keeps who wrote them, for reports and safety.</li>
+    <li>It needs a Skeeto account at the same campus.</li>
+  </ul>
+
+  <footer>
+    Skeeto is an independent app and is not affiliated with the University of Toronto.
+    <br><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+  </footer>
+</main>
+
+<script>
+// Skeeto's own App Store listing, as on docs/i/index.html. Empty until it is
+// filled in.
+var APP_STORE_URL = '';
+
+// The code is the `k` query parameter (/skeeto/c/?k=<code>, which 404.html
+// sends /skeeto/c/<code> to while GitHub Pages cannot serve that path), or
+// the last path segment once it can.
+(function () {
+  var code = '';
+  try { code = new URLSearchParams(location.search).get('k') || ''; } catch (e) { code = ''; }
+  if (!code) {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var last = parts[parts.length - 1] || '';
+    if (last !== 'c' && last !== 'index.html') code = last;
+  }
+  code = code.trim().toLowerCase();
+  // The server's own shape for a code (supabase/pending/29: eight of a-z and
+  // 0-9). A link is untrusted input, so anything else is not passed on.
+  if (!/^[a-z0-9]{8}$/.test(code)) code = '';
+
+  var open = document.getElementById('open');
+  if (code) {
+    // The app's route is /c/<code> (skeeto/src/app/c/[code].tsx).
+    open.href = 'skeeto://c/' + encodeURIComponent(code);
+  } else {
+    open.hidden = true;
+    document.getElementById('bad').hidden = false;
+  }
+
+  if (/^https:\/\/apps\.apple\.com\/(?:[^?#]+\/)?id\d+/.test(APP_STORE_URL)) {
+    var store = document.getElementById('store');
+    store.href = APP_STORE_URL;
+    store.hidden = false;
+    document.getElementById('nostore').hidden = true;
+  }
+})();
+</script>
+</body>
+</html>

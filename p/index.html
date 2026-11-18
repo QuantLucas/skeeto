@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A post on Skeeto</title>
+<style>
+  /* Skeeto's paper, ink and one highlighter, as docs/i/index.html. */
+  :root { color-scheme: light dark; --paper:#F4EFE6; --card:#FFFDF8; --ink:#14130F; --ink2:#35322B;
+          --muted:#625E55; --stroke:#D8D1C4; --hl:#FFC83D; --on-hl:#14130F; }
+  @media (prefers-color-scheme: dark) {
+    :root { --paper:#14130F; --card:#1E1C17; --ink:#F4EFE6; --ink2:#D8D1C4; --muted:#A9A398; --stroke:#3A372F; }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display:none !important; }
+  body { margin:0; background:var(--paper); color:var(--ink); min-height:100dvh;
+         display:flex; align-items:center; justify-content:center; padding:1.5rem 16px;
+         font:16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 26rem; width:100%; }
+  .label { font:600 11px/1.3 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing:.12em; color:var(--muted); }
+  h1 { font-size:1.9rem; line-height:1.15; margin:.5rem 0 .6rem; letter-spacing:-.02em; }
+  p.lede { color:var(--ink2); margin:0 0 1.6rem; }
+  a.btn { display:block; text-align:center; padding:.9rem 1rem; border-radius:999px; text-decoration:none;
+          font-weight:600; margin-bottom:.7rem; }
+  a.primary { background:var(--ink); color:var(--paper); }
+  a.secondary { border:1.5px solid var(--ink); color:var(--ink); }
+  ul { color:var(--ink2); font-size:.95rem; padding:1rem 1rem 1rem 2rem; margin:1.6rem 0 0;
+       background:var(--card); border:1px solid var(--stroke); border-radius:22px; }
+  li { margin:.3rem 0; }
+  .note { font-size:.85rem; color:var(--muted); margin-top:1.2rem; }
+  footer { margin-top:2rem; font-size:.8rem; color:var(--muted); }
+  footer a { color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="label">SKEETO · SPOTTED</div>
+  <h1>Someone shared a post with you</h1>
+  <p class="lede">The thread and its replies are on Skeeto, the app for U of T students.</p>
+
+  <a class="btn primary" id="open" href="skeeto://feed">Open in Skeeto</a>
+  <a class="btn secondary" id="store" href="https://apps.apple.com/app/id6814927332">Get Skeeto on the App Store</a>
+  <p class="note" id="bad" hidden>This link is missing part of its code. Ask whoever shared it for the whole link.</p>
+
+  <ul>
+    <li>This page shows nothing of the post. Skeeto opens it only for someone who could already see it there: signed in at the same campus, and for a residence or friends-only post, one of its members or the author's friends.</li>
+    <li>Anonymous posts show no name, handle or photo, here or in the app.</li>
+  </ul>
+
+  <footer>
+    Skeeto is an independent app and is not affiliated with the University of Toronto.
+    <br><a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a>
+  </footer>
+</main>
+
+<script>
+// A shared tile's link (SKEETO_CHANGES 6.7): /skeeto/p/<code>, which
+// 404.html sends here as /skeeto/p/?k=<code> while GitHub Pages has no such
+// page. With Skeeto installed the link opens the app instead, as a universal
+// link (skeeto/src/app/+native-intent.tsx).
+//
+// The code is the post's uuid in 22 base64url letters
+// (skeeto/src/model/shareCard.ts, postLinkCode). It is read back here into
+// the uuid for the app's own route, skeeto://post/<uuid>. A link is
+// untrusted input, so anything that does not read back is not passed on.
+(function () {
+  var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
+  function idFrom(code) {
+    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(code)) return code.toLowerCase();
+    if (!/^[A-Za-z0-9_-]{22}$/.test(code)) return null;
+    var bits = '';
+    for (var i = 0; i < code.length; i++) {
+      var b = ALPHABET.indexOf(code.charAt(i)).toString(2);
+      while (b.length < 6) b = '0' + b;
+      bits += b;
+    }
+    if (bits.slice(128) !== '0000') return null;
+    var hex = '';
+    for (var j = 0; j < 128; j += 4) hex += parseInt(bits.slice(j, j + 4), 2).toString(16);
+    return hex.slice(0, 8) + '-' + hex.slice(8, 12) + '-' + hex.slice(12, 16) + '-' + hex.slice(16, 20) + '-' + hex.slice(20);
+  }
+
+  var code = '';
+  try { code = new URLSearchParams(location.search).get('k') || ''; } catch (e) { code = ''; }
+  if (!code) {
+    var parts = location.pathname.split('/').filter(Boolean);
+    var last = parts[parts.length - 1] || '';
+    if (last !== 'p' && last !== 'index.html') code = last;
+  }
+  var id = idFrom(code.trim());
+
+  var open = document.getElementById('open');
+  if (id) {
+    open.href = 'skeeto://post/' + id;
+  } else {
+    open.hidden = true;
+    document.getElementById('bad').hidden = false;
+  }
+})();
+</script>
+</body>
+</html>
