@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skeeto, Privacy Policy</title>
-<!-- Written from the code on 2026-10-02 (skeeto/src, supabase/schema.sql,
+<!-- Written from the code on 2026-10-02, revised 2026-11-19 (1.1) and 2026-11-20
+     (Android; Always asked when sharing is switched on, commit 6f22601) (skeeto/src, supabase/schema.sql,
      supabase/functions, ml/). Every claim here should be checkable there; if the
      code changes what is collected, where it goes or how long it is kept, this
      page changes in the same commit. docs/DATA_INVENTORY.md is the internal
@@ -45,7 +46,7 @@
 <main>
 
 <h1>Skeeto, Privacy Policy</h1>
-<p class="updated">Last updated 19 November 2026</p>
+<p class="updated">Last updated 20 November 2026</p>
 
 <p class="lede">Your timetable, assignments, grades and reminders stay on your phone, and they
 work without an account. A grade leaves your phone only if you choose to send one in a chat. A Skeeto account is optional. You need one for Spotted (called the Feed
@@ -53,7 +54,7 @@ until November 2026), Friends and messages, and what it stores is kept on Skeeto
 account, your courses, program and year are used to personalise Spotted, to add you to your
 course communities, and to show on your profile, and you can't switch this off. Your location
 stays on your phone unless you switch on sharing it for a friend, and then they see only the
-campus building you are at or near, or the parking lot you are in, or you send your location in
+campus building you are at or near, the parking lot you are in, or just that you are on campus, or you send your location in
 a chat, which shows the people in that chat where you were, for an hour. Some
 processing happens in the United States; the details are below. Skeeto doesn't sell your
 data, doesn't show ads, and doesn't track you across other apps or websites.</p>
@@ -89,7 +90,7 @@ September 2026 it was called Oakhall. It is the same app from the same developer
 information Skeeto handles, and he is the person to contact about it, at
 <a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>.</p>
 
-<p>This policy covers the Skeeto app for iPhone and the server it uses. It is written to meet
+<p>This policy covers the Skeeto app for iPhone and for Android, and the server it uses. It is written to meet
 Canada's federal privacy law (PIPEDA) and, for people in Quebec, Quebec's private-sector privacy
 law (as amended by Law 25).</p>
 
@@ -97,18 +98,22 @@ law (as amended by Law 25).</p>
 
 <p>If you never make an account, Skeeto's server stores nothing about you, apart from
 short-term <a href="#device">technical logs</a>. In that case, besides your own sign-in to U of
-T, only two kinds of thing leave your phone. One is anonymous usage analytics and crash reports,
-which you can turn off (see <a href="#analytics">Usage analytics</a>). The other is requests for
-public information, such as campus map and food data, term dates and the oldest version of the
-app that still works, from Skeeto's server, campus photos, and U of T's public course timetable.
-Those requests don't include anything about you.</p>
+T, only these things leave your phone. Anonymous usage analytics and crash reports, which you
+can turn off (see <a href="#analytics">Usage analytics</a>). Requests for public information, such
+as campus map and food data, term dates and the oldest version of the app that still works, from
+Skeeto's server, campus photos from Concept3D (the company behind U of T's online map), and U of
+T's public course timetable. Map images, which come from Apple on iPhone and from Google on
+Android (see <a href="#location">Location</a>). And on Android, the address for notifications that
+Google's Firebase gives the app when it starts (see <a href="#push">Message notifications</a>).
+None of these include anything about you.</p>
 
 <p>If you do make an account, this is everything Skeeto's server stores about you.</p>
 
 <h3 id="account">Your account</h3>
 <ul>
-  <li><strong>How you sign in.</strong> Sign in with Apple, Google, or a six-digit code sent to
-      your email. We store your email address (with Sign in with Apple this may be a private
+  <li><strong>How you sign in.</strong> On iPhone, sign in with Apple, Google, or a six-digit
+      code sent to your email. On Android, sign in with a six-digit code sent to your email, or
+      with Google where the app offers it. We store your email address (with Sign in with Apple this may be a private
       relay address) and the ID Apple or Google uses for you. If Apple or Google gives us your
       name, we store it as a suggestion for your display name, and so that people at your campus
       can find you by typing the start of it in Friends &rarr; Add or Search. That name is only
@@ -172,8 +177,10 @@ Those requests don't include anything about you.</p>
       made, and that never changes. In an anonymous community every post and reply is anonymous:
       others see "Anonymous" on a post, or a two-word name that belongs to you in that one thread
       (such as "Quiet Heron") on a reply, and never your name, handle, photo, program or year.
-      Everywhere else, posts and replies carry your name; anonymous posts made elsewhere before
-      November 2026 stay anonymous, and so do replies under them. Skeeto's server still records
+      Everywhere else, posts and replies carry your name. Two kinds of post elsewhere are anonymous
+      too: ones made before November 2026, and the threads Skeeto opens after an exam in a course
+      community. On those you can reply anonymously (the switch starts on), and the person who
+      wrote the post is always anonymous in their own thread. Skeeto's server still records
       that you wrote it, because reports, strikes, bans, blocks, deleting your own post, removal
       from a community and the support lines' review (<a href="#moderation">section 5</a>) all
       need it; only the developer can see that. Anonymous posts and replies can't carry photos or
@@ -214,22 +221,26 @@ Those requests don't include anything about you.</p>
 
 <h3 id="push">Message notifications</h3>
 <ul>
-  <li><strong>Your iPhone's push token.</strong> If you allow notifications, the app sends
-      Skeeto's server the push token Apple gives Skeeto on your phone (an address for
-      notifications, which says nothing else about you or the phone), linked to your account,
-      with whether the app is a test build or the App Store one and when it was last
-      registered. It is used only to deliver the notifications described here. Signing out on that phone
-      removes it.</li>
+  <li><strong>Your phone's push token.</strong> If you allow notifications, the app sends
+      Skeeto's server the push token your phone's notification service gives Skeeto (Apple's on
+      iPhone, Google's Firebase Cloud Messaging on Android): an address for notifications, which
+      says nothing else about you or the phone. It is linked to your account, with whether it is
+      an iPhone test build, the App Store build or an Android phone, and when it was last
+      registered. It is used only to deliver the notifications described here. Signing out on that
+      phone removes it. On Android, Firebase gets that address from Google when the app starts,
+      even before you sign in or allow notifications; Skeeto's server only receives it once you
+      are signed in and have allowed them.</li>
   <li><strong>Chats you muted</strong>: which conversations you don't want notifications
       from. Nobody else can see this, and the other people in the chat aren't told.</li>
   <li><strong>What a notification contains.</strong> When someone messages you, Skeeto's server
-      sends <a href="#processors">Apple's push notification service</a> the notification for
-      your phone: the sender's display name (and the group's name, in a group chat), the start
+      sends the notification for your phone to <a href="#processors">Apple's push notification
+      service</a> (iPhone) or Google's Firebase Cloud Messaging (Android): the sender's display name (and the group's name, in a group chat), the start
       of the message (up to about 120 characters, or "Sent a photo" for a photo, or "Shared a
       post", "Shared a location" or "Shared a grade" for those cards, never the grade or the
       place), how many
-      unread messages you have, and the conversation's ID so a tap opens it. Apple delivers it
-      to your phone. Nothing is sent for a chat you muted, or from someone either of you has
+      unread messages you have, and the conversation's ID so a tap opens it. Apple or Google delivers it
+      to your phone. On Android it also carries which kind of notification it is, so your phone
+      can sort it into the right group (Messages, Seat alerts and so on). Nothing is sent for a chat you muted, or from someone either of you has
       blocked.</li>
   <li><strong>Spotted notifications.</strong> When someone replies to your post (at most once an
       hour for each post), the notification has their display name, or their two-word name for
@@ -268,17 +279,22 @@ Those requests don't include anything about you.</p>
       or declined someone. Which link someone used isn't recorded. For a friendship an invite made,
       it is noted that it came from an invite, so that turning location on for everyone leaves that
       friend out until you tick them; the note goes when the friendship does.</li>
+  <li>A count of the friend requests you sent, so nobody can send more than 30 a day. Each entry
+      is kept until you send a request more than a day later, and is deleted with your
+      account.</li>
   <li>The communities you have joined, including course communities.</li>
   <li>People you have blocked.</li>
   <li id="suggestions"><strong>People you may know.</strong> Skeeto may suggest people at your
-      campus you may know, worked out on its server from classes you both take this term, friends
+      campus you may know, worked out on its server from classes you both take this term (or next
+      term, from 30 days before it starts), friends
       you have in common (counted, never named), the same program or year, communities you are
       both in, and follows. Your timetable is read for this and never shown: a suggestion shows
       the person's name, username, photo and one reason, such as "2 classes in common". Suggestions
       never use your location, your contacts, or anonymous communities. Skeeto stores the people
       you dismissed with the x, so they aren't suggested again, and whether you allow being
       suggested: switch it off in Account &rarr; Privacy &rarr; Suggest me to people I may know.
-      People can still find you by searching. Whether that switch is on can be read by anyone who
+      Nobody is suggested while their account is less than a day old, while they are muted or
+      banned, or for 30 days after a strike. People can still find you by searching. Whether that switch is on can be read by anyone who
       can see your profile.</li>
 </ul>
 
@@ -294,11 +310,16 @@ account:</p>
   <li>where in the app each of these happened (Spotted, a community, a profile, search).</li>
 </ul>
 <p id="engagement"><strong>How much you use Spotted.</strong> Each night Skeeto's server works out,
-from that activity and what you post and reply, how much you use Spotted (one of four levels, from
-not using it to using it most) and which of your communities you use most (never the Friends
-community). This decides whether Today shows a Spotted post, which one, and which Spotted
-notifications you get. Nobody else can see it, it is replaced each night, and it is deleted with
-your account.</p>
+from that activity and what you posted and replied in the last 14 and 30 days, how much you use
+Spotted (one of four levels, from not using it to using it most) and which of your communities you
+use most (never the Friends community). It keeps the counts behind this: the days you were active
+and the things you did in the last 14 days, and your posts and replies in the last 30. If you
+haven't accepted the posting terms, you are at the lowest level. This decides whether Today shows a
+Spotted post, which one, and which Spotted notifications you get. It is worked out automatically,
+with no person involved. There is no switch for the level itself; turning off Tonight's drop in
+Account stops the notifications it decides. Nobody else can see it: your phone is told it only to
+choose the line on Today's card, and the app doesn't show it. It is replaced each night, and it is
+deleted with your account.</p>
 <p><strong>Your own numbers.</strong> Today's Spotted card can show one line about your own posts
 this week: where your best post ranked in its community, how many likes and replies your posts
 got, or how many people saw them. Only you see it. It is counts only, never who, and it never
@@ -333,8 +354,8 @@ of a short fixed list of words.</p>
       for analytics on your phone. It isn't your username, your account ID, or your UTORid, and
       we don't connect it to them.</li>
   <li><strong>Device details.</strong> The PostHog software adds standard details to each event:
-      app version, iOS version, device type (phone or tablet), screen size, language and time
-      zone. It doesn't send your device's name or any advertising identifier.</li>
+      app version, the phone's operating system (iOS or Android) and its version, device type
+      (phone or tablet), screen size, language and time zone. It doesn't send your device's name or any advertising identifier.</li>
   <li><strong>No location, ever.</strong> A filter in the app removes any location-like value
       from every event before it's sent, including events PostHog's own software creates. The app
       also tells PostHog not to work out your location from your IP address. PostHog's servers
@@ -369,7 +390,8 @@ text or images you post.</p>
   <li>for walking directions you start yourself. While a walk is running, the app follows your
       location in the background, including when the screen is locked, so the directions on your
       Lock Screen stay up to date. iOS shows its location indicator the whole time. Following
-      stops when you arrive or end the walk.</li>
+      stops when you arrive or end the walk. On Android there is no Lock Screen card: a walk
+      follows your location only while the walk screen is open.</li>
 </ul>
 <p>None of that is sent anywhere: not to Skeeto's server, not to analytics, not to other
 students. There are two exceptions, and each happens only when you choose it: sharing where you
@@ -377,24 +399,31 @@ are with friends, and <a href="#chatlocation">sending your location in a chat</a
 <p><strong>Sharing where you are with friends</strong> is
 <strong>off until you switch it on for a friend</strong>, on their card or in Account &rarr;
 Location; a new friend never gets it on their own. It only works if you allow Skeeto to use
-your location, with Precise Location on. When it is on:</p>
+your location, and on iPhone only with Precise Location on (on Android, see below). On iPhone, switching it on also asks iOS to allow location "Always",
+once per phone, so friends can see your place update while Skeeto is closed. You can keep "While
+Using" instead: sharing still works, but only while Skeeto is open. Android never asks for
+"Always". When it is on:</p>
 <ul>
   <li><strong>A place, never a position.</strong> Your phone works out which campus building
       you are at (in it, or within about 40 metres of its walls), or near (within about 150
       metres), or which campus parking lot you are in, and sends only that place and which of the
       three it is ("at", "near" or "in"), or just "on campus" when you are farther from all of
       them. Your exact position, its accuracy, your distance from the building and your path
-      never leave your phone. If Precise Location is off for Skeeto, nothing is shared at
-      all.</li>
+      never leave your phone. On iPhone, if Precise Location is off for Skeeto, nothing is
+      shared at all. On Android, Skeeto never sends a reading less accurate than about 100
+      metres, so with "Approximate" nothing is shared.</li>
   <li><strong>Only on campus.</strong> Your phone sends a place only while you are on your
       own campus: Mississauga, St. George or Scarborough. St. George is spread through downtown
       streets, so there it sends only while you are close to a university building. When you
-      leave, it deletes what it sent (with Skeeto closed, only if you allow location "Always";
-      otherwise it disappears within 30 minutes). Only friends at your own campus can see
+      leave, it deletes what it sent. With Skeeto closed, that happens only on an iPhone that
+      allows location "Always"; otherwise, and always on Android, it disappears within 30
+      minutes. Only friends at your own campus can see
       it.</li>
   <li><strong>When it updates.</strong> While the app is on your screen, when you move to
       another place (a building, from at it to near it, or into a lot; only once two readings or a
-      minute agree, so stepping out of a door doesn't change it) and every few minutes. If you also allow location "Always", it also
+      minute agree, so stepping out of a door doesn't change it) and every few minutes. On Android
+      that is all: nothing is read or sent while Skeeto is closed, and a friend looking for you
+      doesn't wake your phone. On an iPhone that allows location "Always", it also
       updates with Skeeto closed, only on a few events: when you arrive on campus or leave it,
       when iOS notices you have arrived somewhere or left (a "visit"), when you have moved about
       100 metres from the last check, and when a friend you picked looks for you (at most once
@@ -408,7 +437,10 @@ your location, with Precise Location on. When it is on:</p>
       at Scarborough and 2.2 km at St. George (much of downtown). So a check can happen near
       campus as well as on it, but one taken off campus is never sent; it only deletes what was
       there. Farther away, only coming back is watched. The point the 100-metre circle is drawn round stays on your
-      phone, and is forgotten when sharing stops or you sign out. Without "Always", nothing is sent while Skeeto is closed.</li>
+      phone, and is forgotten when sharing stops or you sign out. Without "Always", nothing is sent
+      while Skeeto is closed. With "Always" but sharing off (or no friend picked, or signed out),
+      your phone watches for nothing and nothing is read. You can change "Always" back to "While
+      Using" in your iPhone's Settings, under Skeeto &rarr; Location.</li>
   <li><strong>What is stored:</strong> one current place (a building's or a parking lot's name
       and code, and whether you are at, near or in it, or "on campus"), your campus and the
       time, linked to your account on Skeeto's server. Each new one replaces
@@ -436,11 +468,13 @@ Send my location in a chat and confirm. Your phone then takes one reading and se
 that chat. They see it on a map, with a way to walk there, for one hour; then Skeeto's server
 deletes the position from the message (within a minute), leaving "Shared a location". It is not
 updated and it doesn't follow you. It doesn't need Precise Location: with that off, the
-position sent is the approximate one iOS gives Skeeto. Deleting the message deletes the position at once, and so does
+position sent is the approximate one your phone gives Skeeto. Deleting the message deletes the position at once, and so does
 removing or blocking the person, for a one-to-one chat. If the message is reported, only "Shared
 a location" is kept for review, never the position.</p>
-<p>The map is drawn by Apple Maps, which loads map images from Apple under Apple's own privacy
-policy.</p>
+<p>On iPhone the map is drawn by Apple Maps, which loads map images from Apple under Apple's
+privacy policy. On Android it is drawn by Google Maps, which loads map images from Google under
+Google's privacy policy; Google sees which part of the map is shown and your IP address. Opening a
+walk in Apple Maps or Google Maps sends that app the destination only.</p>
 
 <h3 id="uoft">U of T sign-in</h3>
 <ul>
@@ -453,9 +487,10 @@ policy.</p>
   <li>The app uses that session to read your timetable, program and year from ACORN. It does this
       on your phone, through ACORN's own pages.</li>
   <li>To connect Quercus, it creates a <strong>Quercus access token</strong> named "Skeeto app" on
-      your U of T account. The token is stored in your iPhone's Keychain and sent only to Quercus
+      your U of T account. The token is stored in your phone's secure storage (the Keychain on iPhone, encrypted with
+      the Android Keystore on Android) and sent only to Quercus
       (<code>q.utoronto.ca</code>). If you paste in a Quercus calendar feed link instead, that is
-      also kept in the Keychain.</li>
+      also kept in that secure storage.</li>
   <li>Your timetable is read from ACORN and kept on your phone. Once a day, on its own, your
       phone also looks up your course codes in U of T's public course timetable, and when a class
       time there has moved in a way it can match one for one, it updates that time on your phone
@@ -501,10 +536,12 @@ directly, as you would in a browser. U of T sees that activity under its own pol
       that come from Skeeto's server, seat alerts included, are described under
       <a href="#push">Message notifications</a>. Your phone also checks your watched sections when
       you open Watch or come back to the app, and tells you itself about a seat unless your list is
-      saved to your account and this phone gets Skeeto's notifications;</li>
-  <li>Lock Screen and Live Activity cards, and walking routes;</li>
+      saved to your account and this phone gets Skeeto's notifications. On Android, the phone's
+      own backup to your Google account, and moving to a new phone, can copy the reminders
+      scheduled on it, with their words; Skeeto never sees that backup;</li>
+  <li>Lock Screen and Live Activity cards (iPhone only), and walking routes;</li>
   <li>your location. If you switch on sharing it for a friend, only the campus building you are
-      at or near, or the parking lot you are in, is sent (see <a href="#location">Location</a>),
+      at or near, the parking lot you are in, or "on campus", is sent (see <a href="#location">Location</a>),
       and a position you send in a chat is kept for an hour (see
       <a href="#chatlocation">Sending your location in a chat</a>);</li>
   <li>your analytics on/off setting and the random analytics ID;</li>
@@ -564,9 +601,11 @@ reported.</p>
 
 <ul>
   <li><strong>A list of blocked words</strong> is checked the moment you post or save posts,
-      comments, links, profile fields, and community names and descriptions. A match is refused.</li>
+      comments, links, messages, group names, profile fields, and community names, descriptions
+      and rules. A match is refused.</li>
   <li><strong>A text model</strong> reads posts, comments, profile text (username, display name,
-      bio, program and social handles) and community names and descriptions. Text it rates as
+      bio, program and social handles) and community names, descriptions and rules. It runs in
+      Skeeto's server programs (Supabase); the text isn't sent to any AI or moderation company. Text it rates as
       highly sexually explicit or severely toxic is removed. For a profile, the username and
       display name are replaced with a neutral one, and the bio, program and handles are cleared.
       Text checks never give a strike, except on an anonymous post or reply: one the model rates as
@@ -574,8 +613,8 @@ reported.</p>
       gives its writer a strike.</li>
   <li><strong>Replies in an anonymous community are held for the text check.</strong> A reply
       there is shown only to you for the few seconds the check takes. If the check hasn't answered
-      after about two minutes, the reply is shown anyway, and the server notes that it went out
-      unchecked.</li>
+      after about two minutes, the reply is shown anyway. The server notes that it went out
+      unchecked, and deletes that note after 90 days.</li>
   <li><strong>Every image</strong> (in posts, comments and messages, community icons and profile photos) is checked by an
       image model before anyone else can see it. An image the first check is unsure about is
       <strong>held</strong>. Only you can see it until a second, stronger model decides. If that
@@ -591,14 +630,17 @@ reported.</p>
       to 500 characters), where it was posted and whether it was anonymous, through
       <strong>Resend</strong>, without the writer's name. Nobody else can see that mark, the writer
       included, and it tells no one but the developer who wrote an anonymous post.</li>
-  <li><strong>Strikes:</strong> a strike closes Spotted to you for 7 days. A third strike ends
-      posting and commenting permanently.</li>
+  <li><strong>Strikes:</strong> a strike closes Spotted to you for 7 days. In that time you also
+      can't send messages, like, start a community, or change your profile. A third strike ends
+      posting, commenting, messaging and profile changes permanently.</li>
 </ul>
 
 <div class="note">
 <p><strong>Automated decisions.</strong> A strike from the image check, or from the text check on
 an anonymous post or reply, is made automatically,
-without a person looking first. You can ask for any automated decision to be reviewed by a
+without a person looking first. So are your <a href="#engagement">Spotted usage level</a>, which
+decides Today's Spotted card and Spotted notifications, and who is
+<a href="#suggestions">suggested to you</a> as people you may know. You can ask for any automated decision to be reviewed by a
 person, and tell us why you think it was wrong, by writing to
 <a href="mailto:lucasnadon3132@gmail.com">lucasnadon3132@gmail.com</a>. The developer can restore
 removed content and reverse strikes.</p>
@@ -608,10 +650,12 @@ removed content and reverse strikes.</p>
 report a person from a chat. Reports aren't anonymous to the developer, and the person you
 report isn't told who reported them. If three different people report the same post, comment or
 student-created community, it is hidden until it's reviewed. In an anonymous community, two
-reports are enough to hide a post or reply. Each report and each strike is emailed to the
-developer through <strong>Resend</strong>, an email delivery service. A report email includes
+reports are enough to hide a post or reply. Each report, each block and each strike is emailed to
+the developer through <strong>Resend</strong>, an email delivery service (block emails at most 5 an
+hour about one person and 30 an hour in all). A report email includes
 both usernames, the reason given, and up to 500 characters of the reported text. It never
-includes an image.</p>
+includes an image. A block email says who blocked whom, how many people have blocked that account, and how many open reports it has. The person
+blocked isn't told.</p>
 
 <p><strong>Food corrections</strong> are emailed to the developer the same way, through
 <strong>Resend</strong>, without your name: the place, the reason, your words (up to 500
@@ -623,8 +667,8 @@ reverse strikes, and ban accounts. To do this he can look at reported, held and 
 including images. <strong>Community creators</strong> can remove posts, comments and members in
 the communities they created. In an anonymous community they can also remove the person behind a
 post or reply, who then can't rejoin, post or reply there; Skeeto doesn't tell them who it was.
-Messages aren't scanned automatically, but you can report or block
-the person you're talking to at any time.</p>
+The text model doesn't read messages, but the blocked-word list and the image check do. You can
+report or block the person you're talking to at any time.</p>
 
 <p><strong>Blocking</strong> hides the other person from you everywhere, and you from them:
 Spotted, comments, reposts, search, profiles and messages. It also ends any connection, and any
@@ -666,7 +710,7 @@ sent.</p>
   <tr><td>Messages, and when you last read a conversation</td><td>The other person in the conversation</td></tr>
   <tr><td>A grade or your location, if you send one as a card in a chat</td><td>The people in that chat. A location for one hour, then only "Shared a location" is left</td></tr>
   <tr><td>The campus building you are at or near, or the parking lot you are in, only if you switch on location sharing for a friend</td><td>Only the friends you switched it on for, while you are still friends and neither has blocked the other, and for at most 30 minutes</td></tr>
-  <tr><td>Your email, enrolment record, Spotted activity, how much you use Spotted and your most-used community, stickers, "Not interested" choices, people you dismissed from suggestions, community rules you accepted, blocks, reports, food corrections and moderation record</td><td>Only you and the developer (you can't see Spotted activity record itself, your Spotted usage level, the list of people you dismissed, other people's reports, or the developer's review mark on a post or reply that brought up the support lines)</td></tr>
+  <tr><td>Your email, enrolment record, Spotted activity, how much you use Spotted and your most-used community, stickers, "Not interested" choices, people you dismissed from suggestions, community rules you accepted, blocks, reports, food corrections and moderation record</td><td>Only you and the developer (the app doesn't show you your Spotted activity record, your Spotted usage level (your phone is told it only to pick the line on Today's card), the list of people you dismissed, other people's reports, or the developer's review mark on a post or reply that brought up the support lines)</td></tr>
   <tr><td>The line about your own posts on Today's Spotted card (rank, likes, replies, how many saw them)</td><td>Only you</td></tr>
 </table>
 </div>
@@ -683,13 +727,17 @@ other purpose:</p>
 <div class="wrap">
 <table>
   <tr><th>Provider</th><th>What it does</th><th>Where</th></tr>
-  <tr><td><strong>Supabase</strong></td><td>Skeeto's server: the database, accounts and sign-in (including sending email sign-in codes), photo storage, and small server programs for the automated checks, search, report emails, account deletion, notifications and checking the sections people watch</td><td>Canada (Montréal, on Amazon Web Services). See <a href="#where">Where it is stored</a> for the server programs</td></tr>
+  <tr><td><strong>Supabase</strong></td><td>Skeeto's server: the database, accounts and sign-in (including sending email sign-in codes), photo storage, and small server programs for the automated checks, search, the developer's emails (reports, blocks, strikes, support lines and food corrections), account deletion, notifications and checking the sections people watch</td><td>Canada (Montréal, on Amazon Web Services). See <a href="#where">Where it is stored</a> for the server programs</td></tr>
   <tr><td><strong>Modal</strong></td><td>Rented computers that run the second image check on held images, and work out the post and taste profiles behind Spotted. Each job reads what it needs, computes, and returns only the result</td><td>United States</td></tr>
   <tr><td><strong>PostHog</strong></td><td>Anonymous usage analytics and crash reports, unless you turn them off</td><td>United States</td></tr>
-  <tr><td><strong>Resend</strong></td><td>Delivers report, strike and food correction emails to the developer</td><td>United States</td></tr>
-  <tr><td><strong>Google (Gmail)</strong></td><td>The developer's mailbox, which receives report, strike and food correction emails and anything you email to support</td><td>Google's data centres, which may be outside Canada</td></tr>
-  <tr><td><strong>Apple</strong> and <strong>Google</strong></td><td>Sign-in, if you choose Sign in with Apple or Google. Apple also provides Apple Maps</td><td>Under their own privacy policies</td></tr>
+  <tr><td><strong>Resend</strong></td><td>Delivers report, block, strike, support-line and food correction emails to the developer</td><td>United States</td></tr>
+  <tr><td><strong>Google (Gmail)</strong></td><td>The developer's mailbox, which receives report, block, strike, support-line and food correction emails and anything you email to support</td><td>Google's data centres, which may be outside Canada</td></tr>
+  <tr><td><strong>Apple</strong> and <strong>Google</strong></td><td>Sign-in, if you choose Sign in with Apple (iPhone) or Google. Apple Maps draws the map on iPhone</td><td>Under their own privacy policies</td></tr>
   <tr><td><strong>Apple Push Notification service</strong></td><td>Delivers <a href="#push">Skeeto's notifications</a> (messages, Spotted, seat alerts and the others listed there) to your iPhone, if you allow them. It receives your phone's push token and the notification's text</td><td>Apple's servers, which may be outside Canada, under Apple's privacy policy</td></tr>
+  <tr><td><strong>Google Firebase Cloud Messaging</strong></td><td>Delivers Skeeto's notifications to Android phones, if you allow them. It receives your phone's push token and each notification: its title (such as the sender's name), its text (up to about 120 characters of a message, or a fixed line), your unread count, which kind of notification it is, and the IDs that open the right screen (such as a conversation, post, invite or watched section). Firebase on the phone also registers the app with Google to get that token</td><td>Google's servers, which may be outside Canada, under Google's privacy policy</td></tr>
+  <tr><td><strong>Google Maps Platform</strong></td><td>Draws the campus map on Android. Google receives requests for the map area shown, with your IP address and the app's identity</td><td>Google's servers, which may be outside Canada, under Google's privacy policy</td></tr>
+  <tr><td><strong>Concept3D</strong></td><td>Serves the campus photos U of T's online map uses. It sees the IP address of the phone that loads one, and which photo</td><td>Under its own privacy policy</td></tr>
+  <tr><td><strong>GitHub (Pages)</strong></td><td>Hosts this policy, the terms, the support page, and the pages invite, community and post links open. It sees the IP address of whoever opens one, and the code or post ID in the link. Nothing else is sent to it</td><td>United States</td></tr>
 </table>
 </div>
 
@@ -712,16 +760,17 @@ brokers, doesn't show ads, and doesn't track you across other companies' apps or
   <li><strong>Skeeto's database and photo storage</strong> are in Canada, in Supabase's Montréal
       region.</li>
   <li><strong>Supabase's server programs</strong> run the automated text and image checks, search,
-      report emails, account deletion, notifications and the seat checks for watched sections. Supabase normally runs them in the data centre closest
+      the developer's emails, account deletion, notifications and the seat checks for watched sections. Supabase normally runs them in the data centre closest
       to the request. Account deletion is always run in Montréal. The others usually run in
       Canada, but Supabase doesn't guarantee it, so they may run in another region, such as the
       United States.</li>
   <li><strong>In the United States:</strong> held images and Spotted's profiles (Modal),
-      analytics and crash reports (PostHog), and report, strike and food correction emails
-      (Resend). The developer's mailbox is
+      analytics and crash reports (PostHog), report, block, strike, support-line and food correction
+      emails (Resend), and the pages this policy and invite links are on (GitHub Pages). The developer's mailbox is
       Gmail.</li>
-  <li><strong>Notifications</strong> pass through Apple's push notification service,
-      which may be outside Canada.</li>
+  <li><strong>Notifications</strong> pass through Apple's push notification service (iPhone) or
+      Google's Firebase Cloud Messaging (Android), which may be outside Canada. On Android, map
+      images come from Google Maps.</li>
 </ul>
 <p>Information processed outside Canada is subject to the laws of that country, and may be
 accessible to its courts and authorities.</p>
@@ -738,12 +787,12 @@ accessible to its courts and authorities.</p>
   <tr><td>A location you sent in a chat</td><td>The position is deleted from the message one hour after it is sent (within a minute of the hour), or at once if you delete the message or, in a one-to-one chat, remove or block the person; the message stays as "Shared a location" until it is deleted</td></tr>
   <tr><td>Your shared location, if you switched sharing on for a friend</td><td>One current building or parking lot, with at, near or in (or "on campus"), replaced as you move. Deleted when you leave campus (with the app open, or closed with location "Always" allowed), turn sharing off, sign out or delete your account, and automatically after 30 minutes</td></tr>
   <tr><td>Sections you watch</td><td>Until you remove them in Watch, sign out, erase this phone's data, or delete your account. The last seat count the server read for a section is tied to no one, and goes once nobody watches it</td></tr>
-  <tr><td>Your phone's push token</td><td>Until you sign out on that phone or delete your account. A token Apple reports as no longer valid (for example, after you delete the app) is erased then. An account keeps at most its ten most recent phones</td></tr>
+  <tr><td>Your phone's push token</td><td>Until you sign out on that phone or delete your account. A token Apple or Google reports as no longer valid (for example, after you delete the app) is erased then. An account keeps at most its ten most recent phones</td></tr>
   <tr><td>The ranking behind one Spotted session</td><td>About 2 days</td></tr>
   <tr><td>Spotted search text</td><td>Not kept</td></tr>
   <tr><td>Your two-word name in a thread you replied to anonymously</td><td>As long as that post exists</td></tr>
   <tr><td>Exam times sent for the threads</td><td>Until the term's exam period ends, in a shared table that doesn't say who sent them, so deleting your account doesn't remove them</td></tr>
-  <tr><td>Report, strike and food correction emails</td><td>In the developer's mailbox until he deletes them</td></tr>
+  <tr><td>Report, block, strike, support-line and food correction emails</td><td>In the developer's mailbox until he deletes them</td></tr>
   <tr><td>Analytics events and crash reports</td><td>Kept by PostHog under the developer's PostHog account. They aren't linked to your account, so deleting your account doesn't delete them</td></tr>
   <tr><td>Server backups and technical logs</td><td>Kept by Supabase for a limited time, then overwritten</td></tr>
 </table>
@@ -755,7 +804,8 @@ account, profile, posts, comments, photos, reposts, likes, follows, stickers, "N
 interested" choices, community memberships, messages (from both sides of each conversation),
 enrolment, shared timetables, watched sections, connections, blocks, Spotted activity, Spotted
 usage level, taste profile, terms record, community rules you accepted, suggestions you dismissed,
-food corrections, push tokens and muted chats.
+food corrections, push tokens, muted chats, removals from anonymous communities, the count of
+friend requests you sent, and the record of which Spotted notifications you were sent.
 Other people's comments on your posts, and replies under your comments, go with them. Communities
 you created stay up without you. Replies elsewhere that were addressed to you stay, but they're
 no longer linked to your account.</p>
@@ -780,14 +830,17 @@ no longer linked to your account.</p>
 account uses, or include your username, and the developer will delete the same things by hand.</p>
 
 <p>Your timetable, assignments and other on-phone data stay on your phone until you delete the
-app. Some Keychain items can survive deleting and reinstalling the app.</p>
+app. On iPhone, some Keychain items can survive deleting and reinstalling the app. On Android,
+your phone's Google backup can bring back scheduled reminders when you reinstall or move to a new
+phone; the Quercus token is never in that backup.</p>
 
 <p>Two things are outside Skeeto, and you remove them yourself:</p>
 <ul>
   <li><strong>The Quercus access token.</strong> It's registered on your U of T account. Remove it
       in Quercus at Account &rarr; Settings &rarr; Approved Integrations, where it's called
       "Skeeto app" (or "Oakhall app" if you connected before September 2026).</li>
-  <li><strong>Friends data from Oakhall, before September 2026.</strong> Oakhall stored Friends in
+  <li><strong>Friends data from Oakhall, before September 2026</strong> (only if you used Oakhall on
+      an iPhone). Oakhall stored Friends in
       Apple's iCloud (CloudKit). Your copy is in your own iCloud account. Remove it in
       <strong>Settings &rarr; [your name] &rarr; iCloud &rarr; Manage Account Storage</strong>. To
       have anything left in the shared database deleted, email us.</li>
@@ -801,10 +854,15 @@ app. Some Keychain items can survive deleting and reinstalling the app.</p>
       Skeeto.</li>
   <li><strong>Being suggested to people you may know:</strong> Account &rarr; Privacy &rarr;
       Suggest me to people I may know. Dismiss anyone suggested to you with the x.</li>
-  <li><strong>Location, photos and camera:</strong> allow or refuse them in iOS Settings &rarr;
-      Skeeto. Everything else in the app works without them.</li>
+  <li><strong>Location, photos and camera:</strong> allow or refuse them in your phone's settings:
+      Settings &rarr; Skeeto on iPhone, or Settings &rarr; Apps &rarr; Skeeto &rarr; Permissions on
+      Android. On iPhone, switching location sharing on asks for "Always"; you can pick "While
+      Using" instead, and sharing then updates only while Skeeto is open. Everything else in the
+      app works without them.</li>
   <li><strong>Message notifications:</strong> mute any chat from its &hellip; menu, or turn
-      notifications off in iOS Settings &rarr; Skeeto &rarr; Notifications.</li>
+      notifications off in Settings &rarr; Skeeto &rarr; Notifications on iPhone, or Settings
+      &rarr; Apps &rarr; Skeeto &rarr; Notifications on Android, where each kind (Messages, Seat
+      alerts and the others) has its own switch.</li>
   <li><strong>Seat alerts and watched sections:</strong> turn "Tell me when a seat opens" off in
       Schedule &rsaquo; Watch, or tap Stop watching on a section to remove it from the server.</li>
   <li><strong>Your profile:</strong> edit or clear your display name, bio and social handles at any
@@ -851,7 +909,8 @@ l'information</a>. You can also complain to your own province's privacy regulato
       don't allow, even if the app itself had a bug.</li>
   <li>Photos are kept in private storage. They're only served to someone signed in who is allowed
       to see the post, comment or community they belong to.</li>
-  <li>Your Quercus token is kept in the iPhone Keychain. Server keys never ship in the app. The
+  <li>Your Quercus token is kept in your phone's secure storage: the Keychain on iPhone, or
+      encrypted with the Android Keystore on Android, where it is left out of phone backups. Server keys never ship in the app. The
       rented computers on Modal sign in to the database with a restricted account that can only
       reach what they need.</li>
 </ul>
